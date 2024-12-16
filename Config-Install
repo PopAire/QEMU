@@ -1,0 +1,16 @@
+
+Configurar QEMU desde la terminal
+
+------Crea una imagen de disco virtual para Windows XP:
+~$ qemu-img create -f qcow2 windows_xp.img 10G
+
+------Iniciar la maquina virtual
+qemu-system-x86_64 \                                
+-m 512 \                                    (Asignacion de memoria Ram)
+-hda windows_xp.img \                       (Disco Virtual Creado) 
+-cdrom /ruta/a/windows_xp.iso \             (Iso en disco)
+-boot d \                                   (Que inicie desde Cdrom)
+-vga std \                                  (Usa emulacion de VGA)
+-soundhw ac97 \                             (Emula hardware de sonido)
+-net nic,model=e1000 -net user              (Emula tarjeta de red)
+-net user                                   (Usa NAT para la red)
