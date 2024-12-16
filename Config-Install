@@ -1,9 +1,21 @@
 COMANDO:
+-----------------------------[Crear disco duro virtual]---------------
+qemu-img create -f qcow2 xp.img 10G
 
-qemu-img create -f qcow2 xp.img
-
+-----------------------------[Instalar sistema virtual]---------------
 qemu-system-x86_64 -m 1024 -smp 1 --enable-kvm -boot d -cdrom ~/xp.iso -vga cirrus
 -hda xp.img -soundhw ac97 -net nic,model=rtl8139 -net user -name 'Suricata'
+
+-----------------------------[Iniciar normalmente]--------------------
+qemu-system-x86_64 \
+  -m 1024 \
+  -smp 1 \
+  --enable-kvm \
+  -vga cirrus \
+  -hda xp.img \
+  -soundhw ac97 \
+  -net nic,model=rtl8139 \
+  -net user
 
 
 Configurar QEMU desde la terminal
